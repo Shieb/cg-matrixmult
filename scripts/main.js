@@ -8,15 +8,18 @@ function CalculateCompoundTransform(transforms) {
     // if only one transform, set compound transform equal to it
     // otherwise multiply all matrices together (in proper order)
     // `compound_transform = Matrix.multiply(...)`
-    var transform_matrices = [2]; //here is where I started having issues
+    var transform_matrices = [];
+	var i;
 	if(transforms.length < 2)
 	{
-		compound_transform = app.transforms[0].mat4x4
+		compound_transform = transforms[0].mat4x4
 	}
 	else
 	{
-		transform_matrices[0] = transforms[0]; 
-		transform_matrices[1] = transforms[1];
+		for(i = transforms.length-1; i >= 0; i--)
+		{
+			transform_matrices.push(transforms[i].mat4x4);
+		}
 		compound_transform = Matrix.multiply(transform_matrices);
 	}
     return compound_transform;
@@ -26,7 +29,8 @@ function CalculateCompoundTransform(transforms) {
 function CalculateTransformedVertex(vertex) {
     // multiple vertex by compound_transform
     // `final_vertex = Matrix.multiply(...)`
-    var final_vertex = vertex; // change / remove this
+	
+    var final_vertex = Matrix.multiply([compound_transform, vertex]); 
 
     return final_vertex;
 }
