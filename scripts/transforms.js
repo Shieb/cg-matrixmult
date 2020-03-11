@@ -24,26 +24,29 @@ function Mat4x4Scale(mat4x4, sx, sy, sz) {
 // set values of mat4x4 to the rotate about x-axis matrix
 function Mat4x4RotateX(mat4x4, theta) {
     //mat4x4.values = ...
+	var rad = theta * Math.PI / 180;
 	mat4x4.values = [ 1, 0, 0, 0,
-					  0, Math.cos(theta), -1 * Math.sin(theta), 0,
-					  0, Math.sin(theta), Math.cos(theta), 0,
+					  0, Math.cos(rad), -1 * Math.sin(rad), 0,
+					  0, Math.sin(rad), Math.cos(rad), 0,
 					  0, 0, 0, 1 ];
 }
 
 // set values of mat4x4 to the rotate about y-axis matrix
 function Mat4x4RotateY(mat4x4, theta) {
     //mat4x4.values = ...
-	mat4x4.values = [ Math.cos(theta), 0, Math.sin(theta), 0,
+	var rad = theta * Math.PI / 180;
+	mat4x4.values = [ Math.cos(rad), 0, Math.sin(rad), 0,
 					  0, 1, 0, 0,
-					  -1 * Math.sin(theta), 0, Math.cos(theta), 0,
+					  -1 * Math.sin(rad), 0, Math.cos(rad), 0,
 					  0, 0, 0, 1 ];
 }
 
 // set values of mat4x4 to the rotate about z-axis matrix
 function Mat4x4RotateZ(mat4x4, theta) {
     //mat4x4.values = ...
-	mat4x4.values = [ Math.cos(theta), -1 * Math.sin(theta), 0, 0,
-					  Math.sin(theta), Math.cos(theta), 0, 0,
+	var rad = theta * Math.PI / 180;
+	mat4x4.values = [ Math.cos(rad), -1 * Math.sin(rad), 0, 0,
+					  Math.sin(rad), Math.cos(rad), 0, 0,
 					  0, 0, 1, 0,
 					  0, 0, 0, 1 ];
 }
